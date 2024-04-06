@@ -59,3 +59,54 @@ docker-compose ps
 # Referrencing docker image to reflect local changes to container image
 NB: here we are testing ReactJs app
 - docker run -p 3000:3000 -v $(pwd):/app IMAGE_ID
+
+# bookmarkinf files on container
+- docker run -p 3000:3000 -v /app/node_modules -v $(pwd):/app   <IMAGE_ID>
+
+See`-v /app/node_modules` this part will no longer be copied from local computer to container instead, Our container will rely on node_modules file saved there.
+
+# perfoming our activities with docker compose
+
+```
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - /app/node_modules # do not mapp our local node_modules/ directory TO node_modules/ inside our container
+      - .:/app            # Map all files outside the container to APP directory inside the container  
+ ```
+ 
+ what happens when dockerfile is not `Dockerfile` as usual `eg: Dockerfile.dev`
+## solution
+``
+build: 
+      context: . 
+      dockerfile: Dockerfile.dev 
+``
+`context: .` indicates directory which contains our docker file
+`dockerfile: Dockfile.dev` shows our docker file name
+
+## Run test
+
+- docker run -it [container_id] [WRITE_YOUR_COMMAND_HERE] `commands example`: npm start, sh,...
+Run test to reflect changes in test file
+-  docker exec -it [Container-ID] npm run test
+
+## Starting multi step docker file container 
+
+``` 
+FROM node:alpine as builder # step1
+WORKDIR '/app'
+COPY package.json .
+RUN npm install 
+COPY . .
+RUN npm run build
+
+FROM nginx # step2
+COPY --from=builder /app/build /usr/share/nginx/html
+
+```
+- docker run -p 8080:80 Container Container_id  #by mapping port=8080 to 80 as our container port run our file
