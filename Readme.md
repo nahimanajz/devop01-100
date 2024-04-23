@@ -94,6 +94,7 @@ build:
 - docker run -it [container_id] [WRITE_YOUR_COMMAND_HERE] `commands example`: npm start, sh,...
 Run test to reflect changes in test file
 -  docker exec -it [Container-ID] npm run test
+NB: `ocker exec -it [Container-ID] `helps to execute command insde the running container
 
 ## Starting multi step docker file container 
 
