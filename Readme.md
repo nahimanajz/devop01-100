@@ -111,3 +111,18 @@ COPY --from=builder /app/build /usr/share/nginx/html
 
 ```
 - docker run -p 8080:80 Container Container_id  #by mapping port=8080 to 80 as our container port run our file
+
+  # Advanced code PR Automation workflow
+  ## workflows
+  ## Basic code PR automation workflow
+   ![Screenshot 2024-12-16 at 12 48 45](https://github.com/user-attachments/assets/48659743-91c1-4d7d-b9c8-f3c67f6137b9)
+  1. git ->docker->integrtion test(test, whether DBs are integrated correctly -> SAT(security testing)(checking if your not creating vulnerabilities in your code)-> deployment smoke test (testing kubernetes cluster)-> cve scan->image build prod stage -> push to registry-> deploy
+ 
+     ![image](https://github.com/user-attachments/assets/4bbf7fcb-1622-41f8-9828-32e8e8d5b304)
+     ## Enabling caching with github Action yaml file
+
+     ```
+       cache-from: type=gha
+     cache-to: type=gha, mode=max
+     ```
+  2. For integration test we use docker-compose in order to run multiple images
