@@ -79,6 +79,14 @@ As EKS is widely used let's break down how it is configured
 scenario: 
 Thinks of prometheus as a listener in church choir singing then whenever something goes off he/she detects that and reveal where the issue is.
 
-## final stage which could be five is SECURITY
+## final stage which could be
+ five is SECURITY
+
+## Important screenshots
+![Screenshot 2025-03-14 at 18 46 12](https://github.com/user-attachments/assets/1bc99348-f9fb-47ca-9db4-454ea4608099)
+
+![Screenshot 2025-03-14![Screenshot 2025-03-14 at 19 44 02](https://github.com/user-attachments/assets/6319efa8-82cf-4596-a974-81dff3f33234)
+ at 19 03 14](https://github.com/user-attachments/assets/5bc8d1a7-1f10-47e8-af13-32cda22d6543)
+
 
 
